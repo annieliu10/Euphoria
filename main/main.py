@@ -120,7 +120,7 @@ def run_script():
 
     # send private message to each sus_author with (Title, Message)
     for sus_author in sus_authors_usernames:
-      # r.redditor(sus_author).message(dm_title, dm_message)
+      r.redditor(sus_author).message(dm_title, dm_message)
       print(sus_author)
 
 run_script()

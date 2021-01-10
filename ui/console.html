@@ -115,31 +115,47 @@
 						<h4>User Settings</h4>
 	                <section id="bot_confirmation" class="section-style">
                         <div class="form-wrapper">
-                                <div class="form-holder">
-                                    <h2 style="color: #305f72">Thank you for making someone's day a little brighter</h2>
-								</div>
-								<img src="assets/img/heart.png" class="img" width="50" height="45" style="float:right;margin:-45px -25px"/><img>
-								<button onclick="callEvent()" type="submit" class="forward" style="width: 195px; margin-top: 44px;">Start Bot
+								<button onclick="getConfiguration()"  type="submit" class="forward" style="width: 195px; margin-top: 44px;"> Load your user settings
 								</button> 
-                                <!-- <button style="width: 195px; margin-top: 45px;"><a href="console.html">Return to home</a>
-                                </button> -->
+								<h5 id="result_reddit_community">Your subreddit will appear here</h5>
+								<h5 id="result_dm_title">Your message title will appear here</h5>
+								<h5 id="result_dm_message">Your message will appear here</h5>
+								<h5 id="result_user_name">Your username will appear here</h5>
+								<h5 id="result_password">Your password will appear here</h5>
+							<button style="width: 195px; margin-top: 45px;"><a href="console.html">Return to home</a>
+							</button>
 						</div>
 					</section>
-					 </div>
-
-
-
-
-
-
-
-
-
-
-						
+				</div>	
 					 </div>
 					 
 					 <script>
+						 function getConfiguration() {
+							axios({
+									method: "GET",
+									url: "http://127.0.0.1:5000/retrieve",
+									// headers: {
+									// 	"Access-Control-Allow-Origin": "*"
+									// }
+								})
+								.then ((res) => {
+									// check for success/fail?
+									// four new unique id's in the user settings section
+									console.log("get request sent");
+									console.log(res.data);
+									document.getElementById("result_reddit_community").innerHTML = res.data.configurations.reddit_community;
+									document.getElementById("result_dm_message").innerHTML = res.data.configurations.dm_message;
+									document.getElementById("result_dm_title").innerHTML = res.data.configurations.dm_title;
+									document.getElementById("result_password").innerHTML = res.data.configurations.password;
+									document.getElementById("result_user_name").innerHTML= res.data.configurations.user_name;
+									
+								})
+								.catch((err) =>{
+									console.error(err.message);
+								});
+						 }
+
+
 						 function callEvent() {
 								const subreddit = document.getElementById("subreddit").value;
 								const message = document.getElementById("personal_message").value;
