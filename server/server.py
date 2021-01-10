@@ -15,7 +15,6 @@ configurations = {
     'password': "LYT2001",
     'user_name': "annieliu10",
     'reddit_community': 'ubc',
-    'sleep_interval': 123123,
     'dm_message': "don't kill yourself, you're too sexy",
     'dm_title': "Mental health checkup",
 }
@@ -53,10 +52,28 @@ def login():
                     result="Login account created!")
 
 
-# User Form Fill to extract from subreddit
-@app.route('/settings', methods=["POST"])
-def login():
+##User Form Fill to extract from subreddit
+@app.route('/settings', methods=["PUT"])
+def settings():
+    tempDict= {}
+    tempDict = configurations
+    if not request.json:
+        abort(400)
+    if "user_name" in request.json and type(request.json['user_name']) is not str:
+        abort(400)
+    if "reddit_community" in request.json and type(request.json['reddit_community']) is not str:
+        abort(400)
+    if "dm_message" in request.json and type(request.json['dm_message']) is not str:
+        abort(400)
+    if "dm_title" in request.json and type(request.json['dm_title']) is not str:
+        abort(400)
     
+    ##change it or use default
+
+
+# get configuration information
+
+
 
 
 
@@ -69,14 +86,14 @@ def change_target():
     configurations['reddit_community'] = request.json['reddit_community']
     return "Subreddit community is updated to " + configurations['reddit_community']
 
-##manipulate sleep_interval
-@app.route('/sleep_interval', methods=["POST"])
-def change_sleep_interval():
-    if not request.json or not "sleep_interval" in request.json:
-        abort(400)
+# ##manipulate sleep_interval
+# @app.route('/sleep_interval', methods=["POST"])
+# def change_sleep_interval():
+#     if not request.json or not "sleep_interval" in request.json:
+#         abort(400)
 
-    configurations['sleep_interval']= request.json['sleep_interval']
-    return "Sleep interval is updated to "+ configurations['sleep_interval']
+#     configurations['sleep_interval']= request.json['sleep_interval']
+#     return "Sleep interval is updated to "+ configurations['sleep_interval']
 
 
 ##manipulate the title and content of the message 
