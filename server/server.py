@@ -48,7 +48,16 @@ def login():
         abort(400)
     configurations['user_name']= request.json['user_name']
     configurations['password']= request.json['password']
-    return "Login account created!"
+    return jsonify(username=configurations['user_name'],
+                    password=configurations['password'],
+                    result="Login account created!")
+
+
+# User Form Fill to extract from subreddit
+@app.route('/settings', methods=["POST"])
+def login():
+    
+
 
 
 
