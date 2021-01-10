@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>FormWizard_v2</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="author" content="colorlib.com">
+		<!-- LINEARICONS -->
+		<link rel="stylesheet" href="assets/fonts/linearicons/style.css">
+
+		<!-- MATERIAL DESIGN ICONIC FONT -->
+		<link rel="stylesheet" href="assets/fonts/material-design-iconic-font/css/material-design-iconic-font.css">
+
+		<!-- DATE-PICKER -->
+		<link rel="stylesheet" href="assets/vendor/date-picker/css/datepicker.min.css">
+
+		<!-- STYLE CSS -->
+		<link rel="stylesheet" href="assets/css/console-style.css">
+	</head>
+	<body>
+		<div class="wrapper">
+			<div class="inner">
+                <h3>Your Dashboard</h3>
+				<div class="image-holder">
+					<img src="assets/img/overlay.jpg" alt="">
+				</div>
+            	<div id="wizard">
+            		<!-- SECTION 1 -->
+	                <h4>Choose Time Frame</h4>
+	                <section>
+						<div class="form-row">
+							<div class="form-holder">
+								<input type="text" class="form-control datepicker-here pl-85" data-language='en' data-date-format="dd - m - yyyy" id="dp1">
+								<span class="lnr lnr-chevron-down"></span>
+								<span class="placeholder">Start</span>
+							</div>
+							<div class="form-holder">
+								<input type="text" class="form-control datepicker-here pl-96" data-language='en'  data-date-format="dd - m - yyyy" id="dp2">
+								<span class="lnr lnr-chevron-down"></span>
+								<span class="placeholder">End</span>
+							</div>
+						</div>
+                        <div class="form-wrapper">
+                            <button class="forward">Next Page
+                                <i class="zmdi zmdi-long-arrow-right"></i>
+                            </button>
+                        </div>
+                    </section>
+
+					<!-- SECTION 2 -->
+	                <h4>Choose Subreddit</h4>
+	                <section>
+                    	<div class="form-row">
+							<div class="form-holder">
+								<input type="text" class="form-control" placeholder="Subreddit :">
+                            </div>
+                        </div>
+						<!-- <div class="form-row mb-21">
+							<div class="form-holder w-100">
+								<textarea name="" id="" class="form-control" style="height: 100px;" placeholder="Enter Message :"></textarea>
+							</div>
+						</div> -->
+                        <button class="forward" style="width: 195px; margin-top: 44px;">Next Page
+                            <i class="zmdi zmdi-long-arrow-right"></i>
+						</button> 
+	                </section>
+
+
+	                <!-- SECTION 3 -->
+	                <h4>Enter Message</h4>
+	                <section>
+                    	<div class="form-row">
+							<div class="form-holder">
+								<input type="text" class="form-control" placeholder="Enter Title :">
+                            </div>
+                        </div>
+						<div class="form-row mb-21">
+							<div class="form-holder w-100">
+								<textarea name="" id="" class="form-control" style="height: 100px;" placeholder="Enter Message :"></textarea>
+							</div>
+						</div>
+	                    <button class="forward" style="width: 195px; margin-top: 44px;">Confirm
+						</button> 
+	                </section>
+
+	                <!-- SECTION 4 -->
+	                <h4>Confirmation</h4>
+	                <section class="section-style">
+                        <div class="form-wrapper">
+                                <div class="form-holder">
+                                    <h2>Thank you for making someone's day a little brighter :)</h2>
+                                </div>
+                                <button style="width: 195px; margin-top: 45px;"><a href="console.html">Return to home</a>
+                                </button>
+                        </div>
+                     </div>
+                </div>
+	        </section>
+        </div>
+	</div>
+ </div> 
+        
+        <script src="assets/js/jquery-3.3.1.min.js"></script>
+
+        <!-- JQUERY STEP -->
+        <script src="assets/js/jquery.steps.js"></script>
+        
+        <!-- DATE-PICKER -->
+        <script src="assets/vendor/date-picker/js/datepicker.js"></script>
+        <script src="assets/vendor/date-picker/js/datepicker.en.js"></script>
+        
+        <script src="assets/js/main-console.js"></script>
+<!-- Template created and distributed by Colorlib -->
+</body>
+</html>
