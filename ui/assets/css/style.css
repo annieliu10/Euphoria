@@ -28,7 +28,7 @@ h1, h2, h3, h4, h5, h6 {
   border-bottom: 2px solid #eceefe;
   transition: all 0.5s;
   z-index: 997;
-  padding: 15px 0;
+  padding: 0px 0;
 }
 
 #header .logo {
@@ -47,7 +47,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 #header .logo img {
-  max-height: 80px;
+  max-height: 70px;
 }
 
 /*--------------------------------------------------------------

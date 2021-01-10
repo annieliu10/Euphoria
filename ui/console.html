@@ -25,36 +25,39 @@
 				<div class="image-holder">
 					<img src="assets/img/overlay.jpg" alt="">
 				</div>
-            	<div id="wizard">
-            		<!-- SECTION 1 -->
+            	<form onsubmit="return false" id="wizard">
+            		<!-- SECTION 1
 	                <h4>Choose Time Frame</h4>
-	                <section>
-						<h5 style="font-size: 15px">Choose the time frame from which you would like to scan posts from.</h5>
+	                <section id="time_frame_section">
+						<h5 style="font-size: 15px">Choose the time frame from which you would like to scan posts from: </h5>
+						<br>
 						<div class="form-row">
 							<div class="form-holder">
-								<input type="text" class="form-control datepicker-here pl-85" data-language='en' data-date-format="dd - m - yyyy" id="dp1">
+								<input name="start_date" type="text" class="form-control datepicker-here pl-85" data-language='en' data-date-format="dd - m - yyyy" id="dp1">
 								<span class="lnr lnr-chevron-down"></span>
 								<span class="placeholder">Start</span>
 							</div>
 							<div class="form-holder">
-								<input type="text" class="form-control datepicker-here pl-96" data-language='en'  data-date-format="dd - m - yyyy" id="dp2">
+								<input name="end_date" type="text" class="form-control datepicker-here pl-96" data-language='en'  data-date-format="dd - m - yyyy" id="dp2">
 								<span class="lnr lnr-chevron-down"></span>
 								<span class="placeholder">End</span>
 							</div>
 						</div>
                         <div class="form-wrapper">
-                            <button class="forward">Next Page
+                            <button on class="forward">Next Page
 								<i class="zmdi zmdi-long-arrow-right"></i>
                             </button>
                         </div>
-                    </section>
+                    </section> -->
 
 					<!-- SECTION 2 -->
 	                <h4>Choose Subreddit</h4>
-	                <section>
+	                <section >
+						<h5 style="font-size: 15px">Enter the subreddit name from which you would like to scan posts from: </h5>
+						<br>
                     	<div class="form-row">
 							<div class="form-holder">
-								<input type="text" class="form-control" placeholder="Subreddit :">
+								<input id="subreddit" name="sub_reddit"  type="text" class="form-control" placeholder="Subreddit :">
                             </div>
                         </div>
 						<!-- <div class="form-row mb-21">
@@ -70,38 +73,180 @@
 
 	                <!-- SECTION 3 -->
 	                <h4>Enter Message</h4>
-	                <section>
+	                <section >
+						<h5 style="font-size: 15px">Enter a message title and body: </h5>
+						<br>
                     	<div class="form-row">
 							<div class="form-holder">
-								<input type="text" class="form-control" placeholder="Enter Title :">
+								<input id="personal_title" name="title" type="text" class="form-control" placeholder="Enter Title :">
                             </div>
                         </div>
 						<div class="form-row mb-21">
 							<div class="form-holder w-100">
-								<textarea name="" id="" class="form-control" style="height: 100px;" placeholder="Enter Message :"></textarea>
+								<textarea id="personal_message" name="message" id="" class="form-control" style="height: 100px;" placeholder="Enter Message :"></textarea>
 							</div>
 						</div>
-	                    <button class="forward" style="width: 195px; margin-top: 44px;">Start Bot
+                        <button class="forward" style="width: 195px; margin-top: 44px;">Next Page
+                            <i class="zmdi zmdi-long-arrow-right"></i>
 						</button> 
 	                </section>
 
 	                <!-- SECTION 4 -->
 	                <h4>Confirmation</h4>
-	                <section class="section-style">
+	                <section id="bot_confirmation" class="section-style">
                         <div class="form-wrapper">
                                 <div class="form-holder">
-                                    <h2 style="color: #305f72">Thank you for making someone's day a little brighter :)</h2>
-                                </div>
-                                <button style="width: 195px; margin-top: 45px;"><a href="console.html">Return to home</a>
-                                </button>
-                        </div>
-                     </div>
-                </div>
+                                    <h2 style="color: #305f72">Thank you for making someone's day a little brighter</h2>
+								</div>
+								<img src="assets/img/heart.png" class="img" width="50" height="45" style="float:right;margin:-45px -25px"/><img>
+								<button onclick="callEvent()" type="submit" class="forward" style="width: 195px; margin-top: 44px;">Start Bot
+								</button> 
+                                <!-- <button style="width: 195px; margin-top: 45px;"><a href="console.html">Return to home</a>
+								</button> -->
+			
+						</div>	
+					</section>
+
+
+
+
+				
+						 <!-- SECTION 5 -->
+						<h4>User Settings</h4>
+	                <section id="bot_confirmation" class="section-style">
+                        <div class="form-wrapper">
+                                <div class="form-holder">
+                                    <h2 style="color: #305f72">Thank you for making someone's day a little brighter</h2>
+								</div>
+								<img src="assets/img/heart.png" class="img" width="50" height="45" style="float:right;margin:-45px -25px"/><img>
+								<button onclick="callEvent()" type="submit" class="forward" style="width: 195px; margin-top: 44px;">Start Bot
+								</button> 
+                                <!-- <button style="width: 195px; margin-top: 45px;"><a href="console.html">Return to home</a>
+                                </button> -->
+						</div>
+					</section>
+					 </div>
+
+
+
+
+
+
+
+
+
+
+						
+					 </div>
+					 
+					 <script>
+						 function callEvent() {
+								const subreddit = document.getElementById("subreddit").value;
+								const message = document.getElementById("personal_message").value;
+								const title = document.getElementById("personal_title").value;
+								const returnObj = {
+									// "user_name": "username123",
+									"reddit_community": subreddit,
+									"dm_message": message,
+									"dm_title": title
+								};
+								axios({
+									method: "PUT",
+									url: "http://127.0.0.1:5000/settings",
+									data: returnObj,
+									headers: {
+										"Access-Control-Allow-Origin": "*"
+									}
+								})
+								.then ((res) => {
+									// check for success/fail?
+									console.log(res.data.configurations);
+								})
+								.catch((err) =>{
+									console.error(err.message);
+								});
+						 }
+
+
+
+
+						 	
+
+
+
+						//  document.addEventListener("submit", (e) => {
+						// 		e.preventDefault();
+						// 		const subreddit = document.getElementById("subreddit").value;
+						// 		const message = document.getElementById("personal_message").value;
+						// 		const title = document.getElementById("personal_title").value;
+						// 		let data = new FormData();
+						// 		data.append("reddit_community", JSON.stringify(subreddit));
+						// 		data.append("dm_title", JSON.stringify(title));
+						// 		console.log(data)
+						// 		data.append("dm_message", JSON.stringify(message))
+						// 		console.log(data);
+						// 		axios({
+						// 			method: "PUT",
+						// 			url: "http://127.0.0.1:5000/settings",
+						// 			data: JSON.stringify(data),
+						// 			headers: {
+						// 				"Access-Control-Allow-Origin": "*"
+						// 			}
+						// 		})
+						// 		.then ((res) => {
+						// 			// check for success/fail?
+						// 			console.log(res.json());
+						// 		})
+						// 		.catch((err) =>{
+						// 			console.error(err);
+						// 		});
+						// 	});
+
+
+						// window.addEventListener("load", ()=> {
+						// 	const form = document.querySelector("wizard");
+						// 	// const subreddit = document.getElementById("sub_reddit").value;
+						// 	// const message = document.getElementById("message").value;
+						// 	// const title = document.getElementById("title").value;
+						// 	// console.log(subreddit);
+							
+						// 	// document.addEventListener("submit", (e) => {
+						// 	// 	e.preventDefault();
+						// 	// 	const subreddit = document.getElementById("sub_reddit").value;
+						// 	// 	console.log(subreddit)
+						// 	// 	const message = document.getElementById("message").value;
+						// 	// 	const title = document.getElementById("title").value;
+						// 	// 	let data = new FormData(form);
+						// 	// 	data.append("reddit_community", JSON.stringify(subreddit));
+						// 	// 	data.append("dm_title", JSON.stringify(title));
+						// 	// 	data.apennd("dm_message", JSON.stringify(message))
+						// 	// 	console.log(data);
+						// 	// 	axios({
+						// 	// 		method: "PUT",
+						// 	// 		url: "http://127.0.0.1:5000/settings",
+						// 	// 		data: JSON.stringify(data),
+						// 	// 		headers: {
+						// 	// 			"Access-Control-Allow-Origin": "*"
+						// 	// 		}
+						// 	// 	})
+						// 	// 	.then ((res) => {
+						// 	// 		// check for success/fail?
+						// 	// 		console.log(res.json());
+						// 	// 	})
+						// 	// 	.catch((err) =>{
+						// 	// 		console.error(err);
+						// 	// 	});
+						// 	// });
+						// });
+					</script>
+                </form>
 	        </section>
         </div>
 	</div>
  </div> 
-        
+		
+ 		<!-- Require axios and jquery -->
+ 		<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
         <script src="assets/js/jquery-3.3.1.min.js"></script>
 
         <!-- JQUERY STEP -->

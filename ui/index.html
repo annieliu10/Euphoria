@@ -180,7 +180,14 @@
         <h1>Euphoria</h1>
         <h2>Nurturing mental wellness, one subreddit at a time
         </h2>
-        <a href="console.html" class="btn-get-started">Sign In</a>
+        <button
+          onclick="document.getElementById('id01').style.display='block'"
+          style="width: auto"
+          class="btn-get-started"
+        >
+          Sign In
+        </button>
+        <!-- <a href="console.html" class="btn-get-started">Sign In</a> -->
         <img
           src="assets/img/bg.png"
           class="bg img"
@@ -219,42 +226,14 @@
           <div class="FormRow" id="LoginButtonDiv">
             <input type="submit" value="Login" />
           </div>
+          {}
           <div id="BadLogin">
             <p>
               The login information you entered does not match an account in our
               records. Please try again.
             </p>
           </div>
-          <!-- <div class="imgcontainer">
-            <span
-              onclick="document.getElementById('id01').style.display='none'"
-              class="close"
-              title="Close Modal"
-              >&times;</span
-            >
-            <img src="img_avatar2.png" alt="Avatar" class="avatar" />
-          </div>
-  
-          <div class="container">
-            <label for="Username"><b>Username</b></label>
-            <input
-              type="text"
-              placeholder="Enter Username"
-              name="Username"
-              required
-            />
-  
-            <label for="Password"><b>Password</b></label>
-            <input
-              type="password"
-              placeholder="Enter Password"
-              name="Password"
-              required
-            />
-  
-            <button value="Login" type="submit">Login</button>
-          </div> -->
-  
+
           <div class="container" style="background-color: #f1f1f1">
             <button
               type="button"
@@ -281,13 +260,6 @@
               </p>
             </div>
 
-              <!-- <form action="" method="post">
-                <input type="email" name="email" /><input
-                  type="submit"
-                  value="Subscribe"
-                />
-              </form> -->
-
     </footer>
     <!-- End Footer -->
 
@@ -297,20 +269,16 @@
 
     <!-- Vendor JS Files -->
     <script>
-      function loginResults() {
-        var loggedIn = document.getElementById("LoggedIn");
-        var badLogin = document.getElementById("BadLogin");
-        if (xmlhttp.responseText.indexOf("failed") == -1) {
-          loggedIn.innerHTML = "Logged in as " + xmlhttp.responseText;
-          loggedIn.style.display = "block";
-          form.style.display = "none";
+      function loginResults(xhttp) {
+        res = JSON.parse(xhttp.response);
+        // console.log(xhttp);
+        if (res.result == "Login account created!") {
+          // Redirect to console page 
+          console.log("User " + res.username + " has successfully logged in. ");
+          window.location = "./console.html";
         } else {
-          badLogin.style.display = "block";
-          form.Username.select();
-          form.Username.className = "Highlighted";
-          setTimeout(function () {
-            badLogin.style.display = "none";
-          }, 3000);
+          // send error message
+          console.log("error");
         }
       }
 
@@ -322,7 +290,7 @@
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function () {
           if (this.readyState == 4 && this.status == 200) {
-            document.getElementById("demo").innerHTML = this.responseText;
+            loginResults(xhttp);
           }
         };
 
@@ -333,7 +301,7 @@
 
       window.addEventListener("load", function () {
         var loginForm = document.getElementById("LoginForm");
-        console.log("This is working 390");
+        console.log("This is working 300");
         window.addEventListener("submit", function () {
           login(loginForm);
         });
