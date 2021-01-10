@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, jsonify, make_response
+from flask import Flask, render_template, request, jsonify, make_response, abort
 from flask_cors import CORS
 
 # from flask_httpauth import HTTPBasicAuth
@@ -55,20 +55,19 @@ def login():
 #User Form Fill to extract from subreddit
 @app.route('/settings', methods=["PUT"])
 def settings():
-    
     if not request.json:
-        abort(400)
-    if "user_name" in request.json and type(request.json['user_name']) is not str:
-        abort(400)
+        abort(400, description="Resource not found")
+    # if "user_name" in request.json and type(request.json['user_name']) is not str:
+    #     abort(400, description="Resource not found")
     if "reddit_community" in request.json and type(request.json['reddit_community']) is not str:
-        abort(400)
+        abort(400, description="Resource not found")
     if "dm_message" in request.json and type(request.json['dm_message']) is not str:
-        abort(400)
+        abort(400, description="Resource not found")
     if "dm_title" in request.json and type(request.json['dm_title']) is not str:
-        abort(400)
+        abort(400, description="Resource not found")
     
     ##change it or use default
-    configurations['user_name'] = request.json.get('user_name', configurations['user_name'])
+    # configurations['user_name'] = request.json.get('user_name', configurations['user_name'])
     configurations['reddit_community'] = request.json.get('reddit_community', configurations['reddit_community'])
     configurations['dm_message'] = request.json.get('dm_message', configurations['dm_message'])
     configurations['dm_title']= request.json.get('dm_title', configurations['dm_title'])
