@@ -735,6 +735,9 @@
           if (this.readyState == 4 && this.status == 200) {
             loginResults(xhttp);
             // document.getElementById("demo").innerHTML = this.responseText;
+            // document.getElementById("demo").innerHTML = this.responseText;
+            console.log(this.responseText);
+            console.log(JSON.parse(this.responseText).password);
           }
         };
 
@@ -753,6 +756,7 @@
     </script>
 
     <!-- <script src="scripts/login.js"></script> -->
+    
     <script src="assets/vendor/jquery/jquery.min.js"></script>
     <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="assets/vendor/jquery.easing/jquery.easing.min.js"></script>
@@ -764,5 +768,6 @@
 
     <!-- Template Main JS File -->
     <script src="assets/js/main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   </body>
 </html>

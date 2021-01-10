@@ -4,6 +4,7 @@ from flask_cors import CORS
 # from flask_httpauth import HTTPBasicAuth
 import json
 
+
 ##initiate the flask server 
 app = Flask(__name__)
 CORS(app)
@@ -16,7 +17,7 @@ configurations = {
     'user_name': "annieliu10",
     'reddit_community': 'ubc',
     'dm_message': "don't kill yourself, you're too sexy",
-    'dm_title': "Mental health checkup",
+    'dm_title': "Mental health checkup!",
 }
 
 

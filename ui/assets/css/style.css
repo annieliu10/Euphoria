@@ -1,9 +1,3 @@
-/**
-* Template Name: Bikin - v2.2.0
-* Template URL: https://bootstrapmade.com/bikin-free-simple-landing-page-template/
-* Author: BootstrapMade.com
-* License: https://bootstrapmade.com/license/
-*/
 
 /*--------------------------------------------------------------
 # General
@@ -30,7 +24,7 @@ h1, h2, h3, h4, h5, h6 {
 # Header
 --------------------------------------------------------------*/
 #header {
-  background: #ffffff;
+  background: #f6f7ff;
   border-bottom: 2px solid #eceefe;
   transition: all 0.5s;
   z-index: 997;
@@ -38,7 +32,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 #header .logo {
-  font-size: 30px;
+  font-size: 20px;
   margin: 0;
   padding: 0;
   line-height: 1;
