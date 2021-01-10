@@ -4,6 +4,7 @@ from flask_cors import CORS
 # from flask_httpauth import HTTPBasicAuth
 import json
 
+
 ##initiate the flask server 
 app = Flask(__name__)
 CORS(app)
@@ -16,7 +17,7 @@ configurations = {
     'user_name': "annieliu10",
     'reddit_community': 'ubc',
     'dm_message': "don't kill yourself, you're too sexy",
-    'dm_title': "Mental health checkup",
+    'dm_title': "Mental health checkup!",
 }
 
 
@@ -52,11 +53,10 @@ def login():
                     result="Login account created!")
 
 
-##User Form Fill to extract from subreddit
+#User Form Fill to extract from subreddit
 @app.route('/settings', methods=["PUT"])
 def settings():
-    tempDict= {}
-    tempDict = configurations
+    
     if not request.json:
         abort(400)
     if "user_name" in request.json and type(request.json['user_name']) is not str:
@@ -69,22 +69,28 @@ def settings():
         abort(400)
     
     ##change it or use default
+    configurations['user_name'] = request.json.get('user_name', configurations['user_name'])
+    configurations['reddit_community'] = request.json.get('reddit_community', configurations['reddit_community'])
+    configurations['dm_message'] = request.json.get('dm_message', configurations['dm_message'])
+    configurations['dm_title']= request.json.get('dm_title', configurations['dm_title'])
+
+    return jsonify({'configurations': configurations})
 
 
-# get configuration information
+# # get configuration information
+@app.route('/retrieve', methods=['GET'])
+def retrieve():
+    return jsonify({'configurations': configurations})
 
 
 
-
-
-
-##manipulate the reddit community (str)
-@app.route('/target_subreddit', methods=["POST"])
-def change_target():
-    if not request.json or not "reddit_community" in request.json:
-        abort(400)
-    configurations['reddit_community'] = request.json['reddit_community']
-    return "Subreddit community is updated to " + configurations['reddit_community']
+# ##manipulate the reddit community (str)
+# @app.route('/target_subreddit', methods=["POST"])
+# def change_target():
+#     if not request.json or not "reddit_community" in request.json:
+#         abort(400)
+#     configurations['reddit_community'] = request.json['reddit_community']
+#     return "Subreddit community is updated to " + configurations['reddit_community']
 
 # ##manipulate sleep_interval
 # @app.route('/sleep_interval', methods=["POST"])
@@ -97,17 +103,17 @@ def change_target():
 
 
 ##manipulate the title and content of the message 
-@app.route('/dm', methods=['POST'])
-def change_titleandmessage():
-    if not request.json:
-        abort(400)
-    if 'dm_title' in request.json and type(request.json['dm_title']) is not str:
-        abort (400)
-    if 'dm_message' in request.json and type(request.json['dm_message']) is not str:
-        abort (400)
-    configurations['dm_title'] = request.json.get('dm_title', configurations['dm_title'])
-    configurations['dm_message'] = request.json.get('dm_message', configurations['dm_message'])
-    return "The message title is updated"
+# @app.route('/dm', methods=['POST'])
+# def change_titleandmessage():
+#     if not request.json:
+#         abort(400)
+#     if 'dm_title' in request.json and type(request.json['dm_title']) is not str:
+#         abort (400)
+#     if 'dm_message' in request.json and type(request.json['dm_message']) is not str:
+#         abort (400)
+#     configurations['dm_title'] = request.json.get('dm_title', configurations['dm_title'])
+#     configurations['dm_message'] = request.json.get('dm_message', configurations['dm_message'])
+#     return "The message title is updated"
 
 
 @app.errorhandler(400)

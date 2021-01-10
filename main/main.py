@@ -67,13 +67,13 @@ def run_script():
   while True:
 
     # WHILE LOOP --> continues until you have all the newest posts within all_subs (until you find the first non-new post)
-    # all_new_posts = True
+    all_new_posts = True
 
-##real time data 
+#real time data 
     # while all_new_posts:
     #   # get post_retrieval_limit # of latest posts: 10
     #   all_subs = run_bot(r, post_retrieval_limit)
-
+    #   print(all_subs)
     #   # check if there is a non-new post in the 10 latest. Do we need to retrieve more?
     #   for sub in all_subs:
     #     if sub["created_utc"] <= prev_time: # if a non-new post is found
@@ -87,15 +87,24 @@ def run_script():
     #     post_retrieval_limit += 10
   
     #   # update retrieval time
-    #   prev_time = all_subs[0]["created_utc"]
+    #   prev_time = all_subs[0]["created_utc"] ##WHYY??
+
+
+
+
+
+
 
 
     all_subs = run_bot(r, post_retrieval_limit)
+    # print(all_subs)
 
     latest_subs = remove_old_subs(all_subs, prev_time)
+
+    # print(latest_subs)
     prev_time = all_subs[0]["created_utc"]
 
-    print(latest_subs)
+  
     # send latest_subs to NLP & retrieve sus_post_ids from NLP --> list of submission_ids for submissions with 'wap_score > threshold'
 
     sus_post_ids, posts = send(latest_subs)
@@ -114,4 +123,4 @@ def run_script():
       # r.redditor(sus_author).message(dm_title, dm_message)
       print(sus_author)
 
-
+run_script()
