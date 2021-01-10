@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, jsonify, make_response
 from flask_cors import CORS
+
 # from flask_httpauth import HTTPBasicAuth
 import json
 
@@ -20,7 +21,6 @@ configurations = {
 }
 
 
-
 # @auth.get_password
 # def get_password(username):
 #     if username == configurations['user_name']:
@@ -37,25 +37,18 @@ def my_index():
     return "Config settings"
 
 
-## can only update the password if you can access it with your old password
-@app.route('/password', methods=["GET", "POST"])
-def password():
-    if request.method == 'GET':
-        return jsonify ({'password': configurations['password']})
-     
-    if not request.json or not "password" in request.json:
+## login endpoint 
+@app.route('/login', methods=["POST"])
+def login():
+    if not request.json or not "password" in request.json or not "user_name" in request.json:
         abort(400)
-
-    configurations['password'] = request.json['password']
-    return "Password is updated to " + configurations['password']
-
-##manipulate the username
-@app.route('/username', methods=["POST"])
-def change_username():
-    if not request.json or not "user_name" in request.json:
+    if "password" in request.json and type(request.json['password']) is not str:
+        abort (400)
+    if "user_name" in request.json and type(request.json['user_name']) is not str:
         abort(400)
-    configurations['user_name'] = request.json['user_name']
-    return "User name is updated to " + configurations['user_name']
+    configurations['user_name']= request.json['user_name']
+    configurations['password']= request.json['password']
+    return "Login account created!"
 
 
 
@@ -102,5 +95,5 @@ def notworking(error):
 
 
 if __name__ == '__main__':
-    app.run(debug= True)
-                      
+    app.run(port=5000, debug= True)
+                                                              

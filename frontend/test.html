@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Title</title>
+  </head>
+  <body>
+    <form id="LoginForm" onsubmit="return false">
+      <h1>Login Form</h1>
+      <div class="FormRow">
+        <label for="Username">Username:</label>
+        <input type="text" size="15" id="Username" name="Username" />
+      </div>
+      <div class="FormRow">
+        <label for="Password">Password:</label>
+        <input type="password" size="15" id="Password" name="Password" />
+      </div>
+      <div class="FormRow" id="LoginButtonDiv">
+        <input type="submit" value="Login" />
+      </div>
+      <div id="BadLogin">
+        <p>
+          The login information you entered does not match an account in our
+          records. Please try again.
+        </p>
+      </div>
+    </form>
+
+    <script>
+      function login(form) {
+        var un = form.Username.value;
+        var pw = form.Password.value;
+        credentials = { user_name: un, password: pw };
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.open("POST", "http://localhost:5000/login", true);
+        xmlhttp.onreadystatechange = function () {
+          if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+            loginResults();
+          }
+        };
+      }
+      window.addEventListener("load", function () {
+        var loginForm = document.getElementById("LoginForm");
+        window.addEventListener("submit", function () {
+          login(loginForm);
+        });
+      });
+    </script>
+
+    <script>
+      function loginResults() {
+        var loggedIn = document.getElementById("LoggedIn");
+        var badLogin = document.getElementById("BadLogin");
+        if (xmlhttp.responseText.indexOf("failed") == -1) {
+          loggedIn.innerHTML = "Logged in as " + xmlhttp.responseText;
+          loggedIn.style.display = "block";
+          form.style.display = "none";
+        } else {
+          badLogin.style.display = "block";
+          form.Username.select();
+          form.Username.className = "Highlighted";
+          setTimeout(function () {
+            badLogin.style.display = "none";
+          }, 3000);
+        }
+      }
+    </script>
+  </body>
+</html>
