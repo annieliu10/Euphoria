@@ -14,7 +14,7 @@ body {
 }
 
 a {
-  color: #568ea6;
+  color: #305f72;
 }
 
 a:hover {
@@ -35,7 +35,7 @@ h6 {
 # Header
 --------------------------------------------------------------*/
 #header {
-  background: #f6f7ff;
+  background: #ffffff;
   border-bottom: 2px solid #eceefe;
   transition: all 0.5s;
   z-index: 997;
@@ -53,12 +53,12 @@ h6 {
 }
 
 #header .logo a {
-  color: #2d405f;
+  color: #305f72;
   margin-left: 0px;
 }
 
 #header .logo img {
-  max-height: 40px;
+  max-height: 90px;
 }
 
 /*--------------------------------------------------------------
@@ -104,11 +104,11 @@ h6 {
   border-radius: 5px;
   transition: 0.5s;
   color: #fff;
-  background: #568ea6;
+  background: #305f72;
 }
 
 #hero .btn-get-started:hover {
-  background: #568ea6;
+  background: #305f72;
 }
 
 /*change to fit more browsers*/

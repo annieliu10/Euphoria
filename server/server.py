@@ -1,14 +1,14 @@
 from flask import Flask, render_template, request, jsonify, make_response
 from flask_cors import CORS
-from flask_httpauth import HTTPBasicAuth
+# from flask_httpauth import HTTPBasicAuth
 import json
 
 ##initiate the flask server 
 app = Flask(__name__)
 CORS(app)
 
-#setting up an authentification 
-auth = HTTPBasicAuth()
+# #setting up an authentification 
+# auth = HTTPBasicAuth()
 
 configurations = {
     'password': "LYT2001",
@@ -19,15 +19,17 @@ configurations = {
     'dm_title': "Mental health checkup",
 }
 
-@auth.get_password
-def get_password(username):
-    if username == configurations['user_name']:
-        return configurations['password']
-    return None
 
-@auth.error_handler
-def unauthorized():
-    return make_response(jsonify({'error': 'Unauthorized access'}), 401)
+
+# @auth.get_password
+# def get_password(username):
+#     if username == configurations['user_name']:
+#         return configurations['password']
+#     return None
+
+# @auth.error_handler
+# def unauthorized():
+#     return make_response(jsonify({'error': 'Unauthorized access'}), 401)
 
 
 @app.route("/")
@@ -36,11 +38,11 @@ def my_index():
 
 
 ## can only update the password if you can access it with your old password
-@app.route('/password', methods=["POST"])
+@app.route('/password', methods=["GET", "POST"])
 @auth.login_required
 def password():
-    # if request.method == 'GET':
-    #     return jsonify ({'password': configurations['password']})
+    if request.method == 'GET':
+        return jsonify ({'password': configurations['password']})
      
     if not request.json or not "password" in request.json:
         abort(400)
@@ -102,4 +104,4 @@ def notworking(error):
 
 if __name__ == '__main__':
     app.run(debug= True)
-          
+                      
