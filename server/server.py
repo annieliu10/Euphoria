@@ -39,7 +39,6 @@ def my_index():
 
 ## can only update the password if you can access it with your old password
 @app.route('/password', methods=["GET", "POST"])
-@auth.login_required
 def password():
     if request.method == 'GET':
         return jsonify ({'password': configurations['password']})
