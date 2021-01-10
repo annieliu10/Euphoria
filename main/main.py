@@ -114,9 +114,4 @@ def run_script():
       # r.redditor(sus_author).message(dm_title, dm_message)
       print(sus_author)
 
-    time.sleep(sleep_interval)
-
-run_script()
-
-
 

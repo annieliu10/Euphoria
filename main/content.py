@@ -20,14 +20,14 @@ def sentiment_analysis(text_file):
     sentiment_score = round(response.document_sentiment.score,2)
     sentiment_magnitude = round(response.document_sentiment.magnitude,2)
 
-    print("Score: {}".format(sentiment_score))
-    print("Magnitude: {}".format(sentiment_magnitude))
+    # print("Score: {}".format(sentiment_score))
+    # print("Magnitude: {}".format(sentiment_magnitude))
 
     sentences = response.sentences
 
-    for sentence in sentences:
-        print(round(sentence.sentiment.magnitude,2))
-        print(round(sentence.sentiment.score, 2))
+    # for sentence in sentences:
+    #     print(round(sentence.sentiment.magnitude,2))
+    #     print(round(sentence.sentiment.score, 2))
     
     return sentiment_score
 
