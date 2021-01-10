@@ -3,7 +3,7 @@ from flask_cors import CORS
 
 # from flask_httpauth import HTTPBasicAuth
 import json
-from main import run_script
+from thirdParty import run_script
 
 ##initiate the flask server 
 app = Flask(__name__)
