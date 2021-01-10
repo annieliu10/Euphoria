@@ -81,10 +81,16 @@ h3 {
 h2 {
   font-family: "Bitter-Regular";
   font-size: 25px;
-  color: #305f72;
+  color: #ffffff;
   padding: 23px 23px;
   font-weight: 400;
   letter-spacing: 0.3px;
+}
+
+h3, h2 {
+  display:inline;
+  margin: 0;
+  padding: 0.3px;
 }
 
 .wizard {
