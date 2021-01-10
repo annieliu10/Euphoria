@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request, jsonify, make_response
 from flask_cors import CORS
 from flask_httpauth import HTTPBasicAuth
 import json
@@ -28,7 +28,6 @@ def get_password(username):
 @auth.error_handler
 def unauthorized():
     return make_response(jsonify({'error': 'Unauthorized access'}), 401)
-
 
 
 @app.route("/")
@@ -77,26 +76,6 @@ def change_sleep_interval():
     return "Sleep interval is updated to "+ configurations['sleep_interval']
 
 
-# ##manipulate the title of the message 
-# @app.route('/dm_title', methods=['POST'])
-# def change_title():
-#     if not request.json or not "dm_title" in request.json:
-#         abort(400)
-
-#     configurations['dm_title'] = request.json['dm_title']
-#     return "The message title is updated to "+ configurations['dm_title']
-
-
-# ##manipulate the dm message content 
-# @app.route('/dm_message', methods=["POST"])
-# def change_message():
-#     if not request.json or not "dm_message" in request.json:
-#         abort(400)
-
-#     configurations['dm_message']= request.json['dm_message']
-#     return "The automated message content is updated to "+ configurations['dm_message']
-
-
 ##manipulate the title and content of the message 
 @app.route('/dm', methods=['POST'])
 def change_titleandmessage():
@@ -111,32 +90,16 @@ def change_titleandmessage():
     return "The message title is updated"
 
 
-
 @app.errorhandler(400)
 def notworking(error):
     return make_response(jsonify({'error': "Not updated successfully"}), 400)
 
 
+@app.errorhandler(404)
+def notworking(error):
+    return make_response(jsonify({'error': "Not found"}), 404)
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
-
-
-
-
-
-
-
-    
-
-if __name__ == '__main__':
-    app.run(debug=True)
-
-
-
-
-
-
-
-    
+    app.run(debug= True)
+          
