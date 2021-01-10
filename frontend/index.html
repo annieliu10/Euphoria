@@ -572,8 +572,6 @@
 
     <!-- Modal -->
     <div id="id01" class="modal">
-      <!-- Need to write python http requests-->
-      <!-- action="./scripts/login.js" -->
       <div class="imgcontainer">
         <span
           onclick="document.getElementById('id01').style.display='none'"
@@ -713,20 +711,17 @@
 
     <!-- Vendor JS Files -->
     <script>
-      function loginResults() {
+      function loginResults(xhttp) {
         var loggedIn = document.getElementById("LoggedIn");
         var badLogin = document.getElementById("BadLogin");
-        if (xmlhttp.responseText.indexOf("failed") == -1) {
-          loggedIn.innerHTML = "Logged in as " + xmlhttp.responseText;
-          loggedIn.style.display = "block";
-          form.style.display = "none";
+        res = JSON.parse(xhttp.response);
+        console.log(res.result);
+        if (res.result == "Login Successful!") {
+          // redirect to console.html page
+          console.log(res.username);
+          window.location.replace("./frontend/console.html");
         } else {
-          badLogin.style.display = "block";
-          form.Username.select();
-          form.Username.className = "Highlighted";
-          setTimeout(function () {
-            badLogin.style.display = "none";
-          }, 3000);
+          // send error: login http response failed
         }
       }
 
@@ -734,11 +729,12 @@
         un = form.Username.value;
         pw = form.Password.value;
         credentials = { user_name: un, password: pw };
-        console.log(credentials);
+        // console.log(credentials);
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function () {
           if (this.readyState == 4 && this.status == 200) {
-            document.getElementById("demo").innerHTML = this.responseText;
+            loginResults(xhttp);
+            // document.getElementById("demo").innerHTML = this.responseText;
           }
         };
 
