@@ -2,7 +2,7 @@ from google.cloud import language_v1
 
 def sentiment_analysis(text_file):
     ## Instantiates a client
-    client = language_v1.LanguageServiceClient()
+    client = language_v1.LanguageServiceClient.from_service_account_json("C:\\Users\\samue\\Downloads\\My-First-Project-3b2eb2d573e3.json")
 
     type_ = language_v1.Document.Type.PLAIN_TEXT
 

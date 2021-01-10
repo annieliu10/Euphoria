@@ -10,7 +10,7 @@
       /* Full-width input fields */
       input[type="text"],
       input[type="password"] {
-        width: 100%;
+        width: 80%;
         padding: 12px 20px;
         margin: 8px 0;
         display: inline-block;
@@ -27,6 +27,8 @@
         border: none;
         cursor: pointer;
         width: 100%;
+        align-items:center;
+
       }
 
       button:hover {
@@ -38,6 +40,8 @@
         width: auto;
         padding: 10px 18px;
         background-color: #f44336;
+        margin: 0 auto;
+        
       }
 
       /* Center the image and position the close button */
@@ -207,7 +211,6 @@
             title="Close Modal"
             >&times;</span
           >
-          <img src="img_avatar2.png" alt="Avatar" class="avatar" />
         </div>
         <form
           class="modal-content animate"
@@ -216,18 +219,18 @@
           onsubmit="return false"
         >
           <div class="FormRow">
-            <label for="Username">Username:</label>
+            <label for="Username" style="padding-left: 50px;padding-right: 50px">Username:</label>
             <input type="text" size="15" id="Username" name="Username" />
           </div>
-          <div class="FormRow">
+          <div class="FormRow" style="padding-left: 50px;padding-right: 50px">
             <label for="Password">Password:</label>
             <input type="password" size="15" id="Password" name="Password" />
           </div>
-          <div class="FormRow" id="LoginButtonDiv">
+          <div class="FormRow" id="LoginButtonDiv" style="padding-left: 50px;padding-right: 50px">
             <input type="submit" value="Login" />
           </div>
-          {}
-          <div id="BadLogin">
+          <!-- {} -->
+          <div id="BadLogin" style="padding-left: 50px;padding-right: 50px">
             <p>
               The login information you entered does not match an account in our
               records. Please try again.
@@ -238,7 +241,7 @@
             <button
               type="button"
               onclick="document.getElementById('id01').style.display='none'"
-              class="cancelbtn"
+              class="cancelbtn" style="text-align: center"
             >
               Cancel
             </button>

@@ -4,17 +4,18 @@ import requests
 import time
 import json
 from content import send
-
+from server import configurations
 ##make call to subreddit using their information, store posts that are passed the threshold, 
 
 # COMMAND CENTER ----------------------------------------------------------------------------------------------
 # =============================================================================================================
 
-target_subreddit = 'depression'
-sleep_interval = 60
-dm_title = "Mental Health Checkup!"
-dm_message = "don't kill yourself, you're too sexy"
+target_subreddit = configurations['reddit_community']
 
+sleep_interval = 60
+dm_title = configurations['dm_title']
+dm_message = configurations['dm_message']
+is_running = configurations['is_running']
 # FUNCTIONS ---------------------------------------------------------------------------------------------------
 # =============================================================================================================
 
