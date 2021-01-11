@@ -4,18 +4,18 @@ import requests
 import time
 import json
 from content import send
-import server 
+from server import configurations
 ##make call to subreddit using their information, store posts that are passed the threshold, 
 
 # COMMAND CENTER ----------------------------------------------------------------------------------------------
 # =============================================================================================================
 
-target_subreddit = server.configurations['reddit_community']
+target_subreddit = configurations['reddit_community']
 
 sleep_interval = 60
-dm_title = server.configurations['dm_title']
-dm_message = server.configurations['dm_message']
-is_running = server.configurations['is_running']
+dm_title = configurations['dm_title']
+dm_message = configurations['dm_message']
+is_running = configurations['is_running']
 # FUNCTIONS ---------------------------------------------------------------------------------------------------
 # =============================================================================================================
 
@@ -124,4 +124,4 @@ def run_script():
       r.redditor(sus_author).message(dm_title, dm_message)
       print(sus_author)
 
-
+run_script()

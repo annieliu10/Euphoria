@@ -1,9 +1,11 @@
 from flask import Flask, render_template, request, jsonify, make_response, abort
 from flask_cors import CORS
 
+from main import run_script
+
 # from flask_httpauth import HTTPBasicAuth
 import json
-from thirdParty import run_script
+
 
 ##initiate the flask server 
 app = Flask(__name__)
